@@ -135,7 +135,7 @@ Book-Management-System/
 ![sample26](screenshots/p26.png) 
 
 ## 📄 License
-- This project is licensed under the MIT License.
+- This project is licensed under the [MIT License](LICENSE).
 
  ## 🙋 Author 
 
