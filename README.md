@@ -84,7 +84,6 @@ Book-Management-System/
 ![sample1](screenshots/p1.png) 
 # 
 ![sample2](screenshots/p2.png) 
-
 # 
 ![sample4](screenshots/p4.png) 
 # 
