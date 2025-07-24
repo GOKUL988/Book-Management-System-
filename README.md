@@ -22,7 +22,7 @@ A simple web-based Book Management System that allows users to manage books, tra
 - **Others** : Django Admin Panel, Django Templating Engine, Object Relational Mapping, Model - View - Controller and Templates 
 
 ## 📂 Project Structure
-
+```bash
 Book-Management-System/
 ├── templates/
 ├── static/
@@ -30,6 +30,7 @@ Book-Management-System/
 ├── db.sqlite3       # or PostgreSQL config
 ├── manage.py
 └── README.md 
+```
 
 ## ⚙️ Installation
 
