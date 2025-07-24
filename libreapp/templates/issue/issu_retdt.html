@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="isuu_ret_div">Issue Returnable Book</div>
+<table cellpadding="10px" align="center" class="isuu_ret_tab1">
+    {% if isslist%}
+    <tr>
+       <th>Member Id</th>
+         <th>Member Name</th>
+        <th>Book Title</th>
+        <th>Issue Date</th>
+        <th>Check-in date</th>
+    </tr>
+    {% for i in isslist%}
+    <tr>
+       <td>{{i.mem_id.member_id}}</td>
+        <td>{{i.mem_id.memname}}</td>
+        <td>{{i.book_id.booktitle}}</td>
+        <td>{{i.iss_date}}</td>
+        <td>{{i.ret_date}}</td>
+        <td><a href="http://127.0.0.1:8000/issu_ret/{{i.issu_id}}"><button class="basicbut2">Return</button></a></td>
+    </tr>
+    {% endfor%}
+    {% else %}
+    <tr>
+        <th>Nothing to Return </th>
+    </tr>
+    {% endif %}
+</table>
+{% endblock %}

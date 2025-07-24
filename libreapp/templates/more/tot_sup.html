@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% block content%}
+<table width="90%" border="1" cellpadding="12px" align="center">
+    <tr>
+        <th colspan="2"><h2>Total Worth of Library</h2></th>
+    </tr>
+    <tr>
+        <th><h3>Total Book Count :</h3></th>
+        <th><h4>{{quan1}}</h4></th>
+    </tr>
+    <tr>
+        <th><h3>Total Book Amount :</h3></th>
+        <th><h4>{{amount}}</h4></th>
+    </tr>
+    <tr>
+        <th><h3>Total Issue Fine Amount :</h3></th>
+        <th><h4>{{tot_fine}}</h4></th>
+    </tr>
+    <tr>
+        <th><h3>Total Sales Amount :</h3></th>
+        <th>{{tot_sales}}</th>
+    </tr>
+    <tr>
+        <th colspan="2"><h2>Entry Count</h2></th>
+    </tr>
+    <tr>
+        <th><h3>Total Member Entry</h3></th>
+        <th><h3>Total Supplier Entry</h3></th>
+    </tr>
+    <tr>
+        <th>{{count_mem}}</th>
+        <th>{{sup_en}}</th>
+    </tr>
+</table>
+{% endblock %}

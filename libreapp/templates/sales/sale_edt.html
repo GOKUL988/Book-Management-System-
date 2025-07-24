@@ -1,0 +1,98 @@
+{% extends 'base.html'%} 
+{% block content %}
+<style>
+    td, input{
+        text-align: center;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div class="vw_bill_div1">Sales edit</div>
+    <table align="center" cellpadding="10px" class="sale_edt_tab1">                                                      
+        <tr>
+            <th colspan="2"> Member Name :</th> 
+            <td><input type="text" value="{{a.mem_dt}}" name="mem_dt"></td>
+            <th colspan="2">Date :</th> 
+            <td><input type="text" value="{{a.dat}}" name="dat"></td> 
+        </tr>
+    </table>
+    <table align="center" cellpadding="10px" class="sale_edt_tab2">
+        <tr>
+            <th>S.NO</th>
+            <th>Book Details</th> 
+            <th>Book Name</th>
+            <th>Rate per Unit</th> 
+            <th>Quantity</th> 
+            <th>Amount</th>
+        </tr>
+        {% for i in b%}
+       <tr>
+            <td>{{forloop.counter}}</td>
+            <td>
+                <input list="stck_dt" type="text" value="{{i.bkisbn_dt}}" name="bkisbn_dt[]" oninput="fillrate(this)" class="booktitle">
+                <datalist id="stck_dt">
+                    {% for j in stck_dt%}
+                    <option value="{{j.isbn}}" {% if j.isbn == i.bkisbn_dt %} Selected {% endif%} data-book="{{j.booktitle}}"  data-rate="{{ j.rate }}" >{{j.isbn}} - {{j.booktitle}}</option> 
+                    {% endfor %}
+                </datalist>
+            </td>
+             <td><input type="text" name="bktit_dt[]" value="{{ i.bktit_dt }}" class="book"></td>
+            <td><input type="text" name="perunt[]" value="{{i.perunt}}" class="rate" oninput="calc(this)"></td> 
+            <td><input type="text" name="qunt[]" value="{{i.qunt}}" class="qty" oninput="calc(this)"></td> 
+            <td><input type="text" name="amount[]" value="{{i.amount}}"  class="amount"></td>
+       </tr>
+       {% endfor %}
+     </table>
+     <table width="100%" align="center">
+        <tr>
+        <th colspan="6"> 
+            <a href="http://127.0.0.1:8000/sale_list"><input type="button" value="BACK" class="but_back"></a> 
+            <input type="submit" value="SUMBIT" class="basicbut1">
+        </th>
+       </tr>
+    </table>
+    <input type="text" id="tot_see" name="tot_see" value="{{ a.tot }}" readonly>
+    <input type="hidden" name="tot_save" id="tot_save" value="{{ a.tot }}">
+
+</form>
+<script>
+   function fillrate(input) {
+    const value = input.value.trim();
+    const row = input.closest("tr");
+    const rateInput = row.querySelector(".rate");
+    const bookInput = row.querySelector(".book");
+    const datalistId = input.getAttribute("list");
+    const options = document.querySelectorAll(`#${datalistId} option`);
+
+    for (let option of options) {
+        if (option.value === value) {
+            bookInput.value = option.getAttribute("data-book");
+            rateInput.value = option.getAttribute("data-rate");
+            break;
+        }
+    }
+}
+
+function calc(el){
+      const row = el.closest("tr"); 
+    const rate = parseFloat(row.querySelector(".rate").value) || 0;  
+    const qty = parseFloat(row.querySelector(".qty").value) || 0;  
+    const amount = rate * qty;
+    row.querySelector(".amount").value = amount.toFixed(2); 
+
+    let total = 0; 
+    document.querySelectorAll(".amount").forEach(a => {
+        total += parseFloat(a.value) || 0;
+    });
+
+    document.getElementById("tot_see").value = total.toFixed(2); 
+    document.getElementById("tot_save").value = total.toFixed(2);
+}
+
+  window.onload = function () {
+    document.querySelectorAll(".rate, .qty").forEach(input => calc(input));
+  };
+
+
+</script>
+{% endblock%}

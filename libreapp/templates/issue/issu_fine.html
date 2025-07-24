@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+    td{
+    text-align:center;
+    }
+</style>
+<form method="POST">
+    {%csrf_token%}
+    <div class="iss_fin_tit">RETURN BILLING</div>
+    <table width="90%" cellpadding="10px" align="center"  id="fin" class="iss_fin_tab1" >
+        {% for a in iss_obj2%}
+        <tr>
+            <th>Member ID :</th>
+            <td>{{a.mem_id.member_id}}</td>
+            <th>Member Name :</th>
+            <td>{{a.mem_id.memname}}</td>
+            <th>Member Type :</th>
+            <td>{{a.mem_id.memtype}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Book Title</th>
+            <th colspan="2">ISBN</th>
+            <th>Duration Date</th>
+            <th>Actual Date</th>
+        </tr>
+        <tr>
+            <td colspan="2">{{a.book_id.booktitle}}</td>
+            <td colspan="2">{{a.book_id.isbn}}</td>
+            <td>{{a.ret_date}}</td>
+            <td>{{a.actual_date}}</td>
+        </tr>
+
+        <tr>
+            <th colspan="3">Fine :</th>
+            <td colspan="3">{{a.fine}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th colspan="3">Payment Method :</th>
+            <td colspan="3"><select name="paymth">
+                <option value="">- - Select Payment - -</option>
+                <option value="CASH">CASH</option>
+                <option value="ONLINE TRANSCATION">ONLINE TRANSCATION</option>
+                <option value="DEBIT CARD">DEBIT CARD</option>
+                <option value="CREDIT CARD">CREDIT CARD</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td colspan="6"><input type="submit" value="Pay" align="center" class="basicbut1"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

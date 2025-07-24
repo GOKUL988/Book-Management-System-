@@ -1,0 +1,39 @@
+{% extends 'base.html'%} 
+{% block content %} 
+<form method="POST">
+    {% csrf_token %}
+        <h2 style="padding-top: 20px; text-align: center;">ISSUE EDIT</h2>
+    <table width="62%" cellpadding="10px" align="center" class="iss_edt_tab1"> 
+        <tr>
+            <th colspan="2">BOOK :</th> 
+            <td>{{a.book_id}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">MEMBER :</th> 
+            <td>{{a.mem_id}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">ISSUE DATE :</th> 
+            <td>{{a.iss_date}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">ACTUAL DATE : </th> 
+            <td>{{a.actual_date}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">FINE</th> 
+            <td>{{a.fine}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">PAYMENT METHOD :</th>
+            <td>{{a.paymth}}</td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <a href="http://127.0.0.1:8000/issu_dt/{{b.issu_id}}"><input type="button" value="BACK" class="but_back"></a> 
+                <input type="submit" value="SUBMIT" class="basicbut1">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+    td{
+        text-align:center;
+    }
+</style>
+
+<table align="center" width="90%" cellpadding="10px" class="issu_dt_tab1">
+    {% for i in a%} 
+    <tr>
+        <th colspan="4" class="issu_dt_tit">Issued Books for {{ i.mem_id.memname }}</th>
+    </tr>
+    <tr>
+        <th>Member Name</th>
+        <th>Member Id</th>
+        <th>Member Type</th>
+    </tr>
+    <tr>    
+        <td>{{i.mem_id.memname}}</td>
+        <td>{{i.mem_id.member_id}}</td>
+         <td>{{i.mem_id.memtype}}</td>
+    </tr>
+    {%endfor%}
+</table>
+<table align="center" width="90%" cellpadding="10px" class="issu_dt_tab2">
+    <tr>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Issue Date</th>
+        <th>Check-in Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+        <th>Fine</th>
+        <th>Payment Method</th>
+    </tr>
+    {% for j in a %}
+    <tr>
+        <td>{{ j.book_id.booktitle }}</td>
+        <td>{{ j.book_id.isbn }}</td>
+        <td>{{ j.iss_date }}</td>
+        <td>{{ j.ret_date }}</td>
+        <td>{{ j.actual_date}}</td>
+        <td>
+            {% if j.actual_date %}
+                <a style="color:green">Returned</a>
+            {% else %}
+                <a style="color:red">Not Returned</a>
+            {% endif %}
+        </td>
+        <td style="color:maroon">{{ j.fine }}</td>
+            <td>{{j.paymth}}</td>
+    </tr>
+    {%endfor%}
+<tr>
+    <td colspan="8">
+        <a href="http://127.0.0.1:8000/issu_lt"><button class="but_back">BACK</button></a>
+        {% for i in a%}
+        <a href="http://127.0.0.1:8000/iss_edt/{{i.issu_id}}"><button class="basicbut1">EDIT</button></a>
+        <a href="http://127.0.0.1:8000/iss_del/{{i.issu_id}}"><button class="basicbut3">DELETE</button></a>
+        {%endfor%}
+    </td>
+</tr>
+</table>
+
+
+
+{% endblock %}

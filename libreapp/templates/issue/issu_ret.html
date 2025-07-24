@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+{% block content%}
+<form method="POST">
+    {% csrf_token %}
+    <p class="iss_ret_tit">Book Return Entry</p>
+    <table width="90%" cellpadding="10px" align="center"  class="iss_ret_tab1">
+        <tr>
+            <th>Member Name</th>
+            <th>Member Id</th>
+            <th>Member Type</th>
+        </tr>
+         {% for a in iss_obj1%}
+    <tr>
+        <td>{{a.mem_id.memname}}</td>
+        <td>{{a.mem_id.member_id}}</td>
+        <td>{{a.mem_id.memtype}}</td>
+    </tr>
+    {%endfor%}
+    </table>
+    <table class="issu_ret_tab2" align="center" cellpadding="10px">
+        <tr>
+            <th>Book Title</th>
+            <th>ISBN</th>
+            <th>Issue Date</th>
+            <th>Check-In Date</th>
+            <th><label for="">Return Date</label></th>
+        </tr>
+        {% for i in iss_obj1%}
+        <tr>
+            <td>{{ i.book_id.booktitle }}</td>
+            <td>{{ i.book_id.isbn }}</td>
+            <td>{{ i.iss_date }}</td>
+            <td>{{ i.ret_date }}</td>
+            <td><input type="date" name="actual_date" required></td>
+        </tr>
+        {% endfor%}
+        <tr>
+            <td colspan="5" align="center">
+                <a href="http://127.0.0.1:8000/issu_lt"><input type="button" value="BACK" class="but_back"></a>
+                <input type="submit" id="submitBtn" value="OK" class="basicbut1">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock%}

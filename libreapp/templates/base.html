@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LIBRARY</title>
+    {% load static %}
+     <link rel="stylesheet" href="{% static 'main.css' %}" >
+</head>
+<body id="maintoggle">
+<table class="navbar">
+<tr class="">
+  <th align="start"><h2 style="color: #dfe7b3; font-family:sans-serif;">LIBRARY MANAGEMENT SYSTEM </h2></th>
+    <td style="text-align: right;">
+      <a href="http://127.0.0.1:8000"><button class="button1">Home</button></a>
+      <a href="http://127.0.0.1:8000/sto_book"><button class="button1">Books</button></a>
+      <a href="http://127.0.0.1:8000/sto_entry"><button class="button1">Book Entry</button></a>
+        <a href="http://127.0.0.1:8000/issu_lt"><button class="button1">Issues</button></a>
+        <button class="button1" onclick="toggleSidebar()">☰</button>
+    </td>
+  </tr>
+</table>
+<div id="mySidebar" class="sidebar" onclick="toggleSidebar()">
+   <div class="drop">
+       <button class="sbbut">Supplier ▼</button>
+       <div class="drop-con">
+           <a href="http://127.0.0.1:8000/sup_entry"><button class="dbut">Supplier Entry</button></a>
+           <a href="http://127.0.0.1:8000/sup_list"><button class="dbut">Supplier Details</button></a>
+       </div>
+   </div>
+    <div class="drop">
+       <button class="sbbut">Stock Details ▼</button>
+       <div class="drop-con">
+           <a href="http://127.0.0.1:8000/pur_lst"><button class="dbut">Stock Invoice</button></a>
+       </div>
+   </div>
+    <div class="drop">
+       <button class="sbbut">Member ▼</button>
+       <div class="drop-con">
+           <a href="http://127.0.0.1:8000/mem_entry"><button class="dbut"> Member Entry</button></a>
+           <a href="http://127.0.0.1:8000/mem_list"><button class="dbut">Member Details</button></a>
+       </div>
+   </div>
+    <div class="drop">
+       <button class="sbbut">Issue ▼</button>
+       <div class="drop-con">
+           <a href="http://127.0.0.1:8000/issu_entry"><button class="dbut"> Issue Entry</button></a>
+           <a href="http://127.0.0.1:8000/issu_lt"><button class="dbut">Issue Details</button></a>
+           <a href="http://127.0.0.1:8000/issu_retdt"><button class="dbut">Issue returned</button></a>
+       </div>
+   </div>
+    <div class="drop">
+       <button class="sbbut">sales ▼</button>
+       <div class="drop-con">
+           <a href="http://127.0.0.1:8000/sale_nw"><button class="dbut"> Sales Entry</button></a>
+           <a href="http://127.0.0.1:8000/sale_list"><button class="dbut">sales Details</button></a>
+       </div>
+   </div>
+    <div class="drop">
+       <button class="sbbut">More▼</button>
+       <div class="drop-con">
+           <a href="http://127.0.0.1:8000/tot_sup"><button class="dbut">Total Collection</button></a>
+
+       </div>
+   </div>
+</div>
+{% block content%}
+{% endblock%}
+<script src="{% static 'main.js' %}"></script>
+</body>
+</html>

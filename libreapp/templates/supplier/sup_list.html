@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+{% block content%}
+{% if messages %}
+  <div id="message_pop" class="messages">
+    {% for message in messages %}
+      <span class="{{ message.tags }}">{{ message }} <button onclick="cancel()" class="closebut" >X</button></span>
+      
+    {% endfor %}
+  </div>
+{% endif %}
+<div class="sup_list_tit">Supplier list</div>
+<table class="sup_list_tab1" align="center">
+    <tr><th> 
+        <form method="GET">
+                <th colspan="5"><input id="inp" type="text" name="search_supp" placeholder="Search by Name or ID" class="input_search">
+                <button type="submit" class="basicbut1">Search</button></th>
+        </form>
+    </th></tr>
+</table>
+  {%if suplist%}
+<table align="center" cellpadding="10px" class="sup_list_tab2">
+    <tr>
+        <th>Supplier ID</th>
+        <th>Supplier Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th colspan="3">details</th>
+    </tr>
+  
+    {% for i in suplist%}
+    <tr>
+        <td>{{i.supp_id}}</td>
+        <td>{{i.sup_name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile}}</td>
+        <td align="center">
+            <a href="http://127.0.0.1:8000/sup_dt/{{i.supp_id}}"><button class="basicbut2">Check</button></a>
+        </td>
+    </tr>
+    {% endfor %} 
+   
+</table>
+ {% else%} 
+ <h2 align="center">Supplier Does not exist </h2>
+    {% endif%}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html'%} 
+{% block content %} 
+<style>
+    td{
+        text-align: center;
+    }
+</style>
+<form method="POST">
+{% csrf_token %} 
+<table width="40%" cellpadding="10px" align="center" class="iss_del_tab1"> 
+    <tr>
+        <th>ARE YOU SURE TO DELETE THIS ISSUE DATA ???</th>
+    </tr>
+    <tr>
+        <td>{{a.book_id.booktitle}} - {{a.book_id.isbn}}</td> 
+    </tr>
+    <tr>
+          <td>{{a.mem_id}} - {{a.mem_id.memname}}</td>
+    </tr>
+    <tr>
+        <th>
+            <a href="http://127.0.0.1:8000/issu_dt/{{a.issu_id}}"><input type="button" value="BACK" class="but_back"></a> 
+            <input type="submit" value="DELETE" class="basicbut3">
+        </th>
+    </tr>
+</table>
+</form>
+
+{% endblock %}

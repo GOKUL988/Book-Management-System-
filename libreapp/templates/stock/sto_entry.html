@@ -1,0 +1,96 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+     td{
+        text-align:center;
+    }
+</style>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <table width="100%" class="ani_bookdt"><tr><th align="center"><h3>PURCHASE & STOCK ENTRY</h3></th></tr></table>
+        <table cellpadding="10px" align="center" width="90%" class="sto_ent_tab1" >
+           <tr>
+                <th colspan="2"><label for="">Supplier Id:</label></th>
+                <td colspan="">
+                    <input list="supp" name="supp_id" id="supp_id" placeholder="Search MEMBER" required> 
+                    <datalist id="supp">
+                        {% for s in supp %}
+                            <option value="{{ s.supp_id }}" class="search_option">{{ s.supp_id }} - {{ s.sup_name }}</option>
+                        {% endfor %}
+                    </datalist>
+                   <a href="http://127.0.0.1:8000/sup_entry"><input type="button" value="NEW SUPPLIER" class="new_one"></a>
+               </td>
+            </tr>
+             <tr>
+                <th colspan="2"><label for="" >Recpit No:</label></th>
+                <td><input type="text" name="billno" id="billno" required></td>
+             </tr>
+             <tr>   
+                <th colspan="2"><label for="">Date</label></th>
+                <td><input type="date" name="date" id="date" required></td>
+            </tr>
+             <tr>
+                 <th colspan="2"><label for="">Bill Upload:</label></th>
+                <td><input type="file" name="bill" id="bill" required></td>
+            </tr>
+        </table>
+    <div class="sto_ent_div1" >
+        <table cellpadding="10px" align="center" id="Stock" class="sto_ent_tab2">
+            <tr>
+                <th>Book Title</th>
+                <th>Author Name</th>
+                <th>Edition</th>
+                <th>Year</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Categories</th>
+                <th>Classfication</th>
+                <th>Rack</th>
+            </tr>
+            <tr>
+
+                <td><input type="text" name="booktitle[]" required></td>
+                <td><input type="text" name="authorname[]" required></td>
+                <td><input type="text" name="edition[]" required></td>
+                <td><input type="text" name="yearofpub[]" required></td>
+                <td><input type="text" name="qun[]"  required></td>
+                <td><input type="text" name="rate[]" required></td>
+                <td>
+                    <input list="a" name="categ[]" type="text"  id="cateo" required> 
+                    <datalist id="a" >
+                        {% for i in a%} 
+                        <option value="{{i.cato1}}"></option>
+                        {% endfor %}
+                    </datalist>
+                </td>
+                <td>
+                    <input list="sub" name="classfic[]" type="text" required>
+                    <datalist id="sub">
+                        {%for i in sub%} 
+                        <option value="{{i.sub}} - {{i.cate_it}}"></option>
+                        {%endfor%}
+                    </datalist>
+                </td>
+                <td>
+                    <input list="rac" type="text" name="rack[]" required>
+                    <datalist id="rac">
+                        {%for i in rac %} 
+                        <option value="{{i.rack_sh}}"></option>
+                        {% endfor%}
+                    </datalist>
+                </td>
+            </tr>
+        </table>
+    </div>
+        <table  cellpadding="10px" align="center" width="100%" class="ani_bookdt">
+            <tr>
+                <td colspan="9">
+                    <input type="button" class="viewbut" value="MORE" onclick="Addmore()">
+                    <input type="submit"class="basicbut1" value="SUMBIT">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+{%endblock%}

@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{% block content %}
+<form method="POST">
+    {% csrf_token%}
+    <div class="mem_ent_div1">Member entry</div>
+    <table cellpadding="10px" align="center" class="mem_ent_tab1">
+        <tr>
+            <th><label for="">Member Name :</label></th>
+            <td><input type="text" name="memname" required></td>
+        </tr>
+        <tr>
+            <th><label for=""> Date of Birth :</label></th>
+            <td><input type="date" name="dob" required></td>
+        </tr>
+        <tr>
+            <th><label for="">Gender :</label></th>
+            <td><select name="gender" required>
+                <option value="">- - Select Gender - -</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other's</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th><label for="">Door No :</label></th>
+            <td><input type="text" name="doorno" required></td>
+        </tr>
+        <tr>
+            <th><label for="">Street Name :</label></th>
+            <td><input type="text" name="strnme" required></td>
+        </tr>
+        <tr>
+            <th><label for="">District :</label></th>
+            <td><input type="text" name="dist" required></td>
+        </tr>
+        <tr>
+            <th><label for="">State :</label></th>
+            <td><input type="text" name="state" required></td>
+        </tr>
+        <tr>
+            <th><label for="">Pincode :</label></th>
+            <td><input type="text" name="pincode" required></td>
+        </tr>
+        <tr>
+            <th><label for="">Member Type :</label></th>
+            <td><select name="memtype" required>
+                <option value=""> - - Select Mem-Type - -</option>
+                <option value="PUBLIC">PUBLIC</option>
+                <option value="STUDENT">STUDENT</option>
+            </select></td>
+        </tr>
+    </table>
+    <div class="mem_ent_div2">
+        <a href="http://127.0.0.1:8000/issu_lt"><input type="button" value="BACK" class="but_back"></a>
+                <input type="submit" value="SUMBIT" class="basicbut1">
+    </div>
+</form>
+
+
+{%endblock%}

@@ -1,0 +1,69 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+    td{
+        text-align: center;
+        padding: 7px;
+    }
+    body{
+        overflow-x: hidden;
+    }
+</style>
+{% if messages %}
+  <div id="message_pop" class="messages">
+    {% for message in messages %}
+      <span class="{{ message.tags }}">{{ message }} <button onclick="cancel()" class="closebut" >X</button></span>
+      
+    {% endfor %}
+  </div>
+{% endif %}
+<form method="GET">
+    <table align="right" style="padding-top: 10px;" class="ani_bookdt">
+            <th>
+                <input list="data_search" id="inp" type="text" name="search1" placeholder="Search by title or ISBN" class="input_search">
+                <datalist id="data_search">
+                    {% for i in data_search %}
+                    <option value="{{i.isbn}}">{{i.isbn}} - {{i.booktitle}}</option>
+                    {% endfor %}
+                </datalist>
+            </th>
+            <th> <button type="submit" onclick="cl()" class="button_search">Search</button></th>
+        </tr>
+    </table>
+</form>
+
+<table align="center" width="90%" class="ani_stobook">
+    <tr>
+        <th colspan="8" class="tit1" >PURCHASE BOOK</th>
+    </tr>
+    <tr>
+        <th colspan="8" width="100%" style="border-top: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px ;"></th>
+    </tr>  
+    <tr >
+        <th>S.NO</th>
+        <th>BOOK NAME</th>
+        <th>ISBN NO</th>
+        <th>AUTHOR NAME</th>
+        <th>EDITION</th>
+        <th>YEAR</th>
+        <th>CLASSFICATON</th>
+        <th>VIEW</th>
+    </tr>
+    <tr>
+        <th colspan="8" width="100%" style="border-bottom: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px;"></th>
+    </tr>
+    {% for inf in book_inf%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{inf.booktitle}}</td>
+        <td>{{inf.isbn}}</td>
+        <td>{{inf.authorname}}</td>
+        <td>{{inf.edition}}</td>
+        <td>{{inf.yearofpub}}</td>
+        <td>{{inf.classfic}}</td>
+        <td><a href="http://127.0.0.1:8000/bookdt/{{inf.acceno}}"><button class="viewbut">View</button></a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock%}

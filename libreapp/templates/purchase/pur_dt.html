@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Purchase Billing</title>   
+ {% load static %}
+     <link rel="stylesheet" href="{% static 'main.css' %}" > 
+</head>
+<body>
+<div class="pur_dt_div">Purchase details </div>
+<table width="90%" align="center" cellpadding="10px" class="pur_dt_tab1">
+    <tr>
+        <th>Purchase ID :</th>
+        <td>{{a.purch_id}}</td>
+        <th>Bill NO :</th>
+        <td>{{a.billno}}</td>
+        <th>date :</th>
+        <td>{{a.date}}</td>
+        <th>BILL :</th>
+        <td><a href="{{a.bill.url}}"><button>VIEW</button></a></td>
+    </tr>
+    <tr>
+        <th>Supplier ID :</th>
+        <td>{{a.supp_id.supp_id}}</td>
+        <th>Supplier Name :</th>
+        <td>{{a.supp_id.sup_name}}</td>
+        <th>Email :</th>
+        <td>{{a.supp_id.email}}</td>
+        <th>Mobile :</th>
+        <td>{{a.supp_id.mobile}}</td>
+    </tr>
+    <tr>
+        <th colspan="3">Address :</th>
+        <td colspan="7">{{a.supp_id.doorno}}- {{a.supp_id.street}} -{{a.supp_id.dist}}-{{a.supp_id.stat}} -{{a.supp_id.pin}}</td>
+    </tr>
+</table>
+<table align="center" cellpadding="10px" class="pur_dt_tab2">
+    <tr>
+        <th colspan="8"> STOCK </th>
+    </tr>
+    <tr>
+        <th>S.NO</th>
+        <th>BOOK NAME</th>
+        <th>BOOK ISBN</th>
+        <th>BOOK AUTHOR</th>
+        <th>RATE</th>
+        <th>QUANTITY</th>
+        <th>AMOUNT</th>
+    </tr>
+    {% for i in b%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td><a href="http://127.0.0.1:8000/bookdt/{{i.acceno}}">{{i.booktitle}}</a> </td>
+        <td>{{i.isbn}}</td>
+        <td>{{i.authorname}}</td>
+        <td><input type="text" value="{{i.rate}}" class="rate" readonly></td>
+        <td><input type="text" class="qty" value="{{i.qun}}" readonly></td>
+        <td ><input type="text" class="amount" readonly></td>
+    </tr>
+    {% endfor%}
+    <tr>
+        <th colspan="6" style="text-align:right;">Amount:</th>
+        <td>{{c}}</td>
+    </tr>
+</table>
+<table align="center" id="hide">
+    <tr >
+        <td>
+            <a href="http://127.0.0.1:8000/pur_lst"><button class="but_back">BACK</button></a>
+            <button onclick="prt()" class="basicbut1">PRINT</button>
+        </td>
+    </tr>
+</table>
+<script src="{% static 'main.js' %}"></script>
+</body>
+</html>

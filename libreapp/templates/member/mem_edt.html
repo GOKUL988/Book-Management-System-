@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <h3 align="center">MEMBER EDIT</h3>
+        </tr>
+    <table width="50%" align="center" cellpadding="10px" class="mem_edt_tab1">
+       
+        <tr>
+            <th>Member Name :</th>
+            <td>{{a.memname}}</td>
+        </tr>
+        <tr>
+            <th>Date of Birth : </th>
+            <td>{{a.dob}}</td>
+        </tr>
+        <tr>
+            <th>Gender :</th>
+            <td>{{a.gender}}</td>
+        </tr>
+        <tr>
+            <th>Door NO :</th>
+            <td>{{a.doorno}}</td>
+        </tr>
+        <tr>
+            <th>Street Name : </th>
+            <td>{{a.strnme}}</td>
+        </tr>
+        <tr>
+            <th>District :</th>
+            <td>{{a.dist}}</td>
+        </tr>
+        <tr>
+            <th>State :</th>
+            <td>{{a.state}}</td>
+        </tr>
+        <tr>
+            <th>Pincode :</th>
+            <td>{{a.pincode}}</td>
+        </tr>
+        <tr>
+            <th>member Type : </th>
+            <td>{{a.memtype}}</td>
+        </tr>
+       
+    </table>
+    <table width="100%">
+         <tr>
+            <td align="center">
+                <a href="http://127.0.0.1:8000/memdt/{{b.member_id}}"><input type="button" value="BACK" class="but_back"></a>
+                <input type="submit" value="SAVE" class="basicbut1">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

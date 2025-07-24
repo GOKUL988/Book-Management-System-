@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="edt_sup_div1">edit supplier</div>
+    <table width="80%" cellpadding="10px" align="center" class="edt_sup_tab1">
+        <tr>
+            <th>Supplier Name :</th>
+            <td>{{a.sup_name}}</td>
+        </tr>
+        <tr>
+            <th>Email :</th>
+            <td>{{a.email}}</td>
+        </tr>
+        <tr>
+            <th>Mobile :</th>
+            <td>{{a.mobile}}</td>
+        </tr>
+        <tr>
+            <th>Door No :</th>
+            <td>{{a.doorno}}</td>
+        </tr>
+        <tr>
+            <th>Street :</th>
+            <td>{{a.street}}</td>
+        </tr>
+        <tr>
+            <th>Distict :</th>
+            <td>{{a.dist}}</td>
+        </tr>
+        <tr>
+            <th> State :</th>
+            <td>{{a.stat}}</td>
+        </tr>
+        <tr>
+            <th>Pincode :</th>
+            <td>{{a.pin}}</td>
+        </tr>
+    </table>
+    <div class="edt_sup_div2">
+            <a href="http://127.0.0.1:8000/sup_dt/{{b.supp_id}}"><input type="button" value="back" class="but_back"></a>
+            <input type="submit" value="Update" class="basicbut1">
+    </div>
+</form>
+{% endblock %}

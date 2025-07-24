@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+    td{
+        text-align:center;
+    }
+</style>
+<table cellpadding="10px" width="90%" align="center" class="iss_lt_tb1">
+    <tr>
+        <th colspan="8" class="green_border_top"></th>
+    </tr>  
+    <tr>
+        <th align="start" style="font-size: x-large;">ISSUE LIST</th>
+        <th align="end" colspan="6"><a href="http://127.0.0.1:8000/issu_entry"><button class="but_back">New Issue</button></a>
+    </tr>
+   <tr>
+        <th colspan="8" class="green_border_bottom"></th>
+    </tr> 
+</table>
+<table cellpadding="10px" width="90%" class="iss_lt_tb2" align="center">
+    {% if isslist %}
+    <tr>
+        <form method="GET">
+             <td colspan="9"><input type="text" list="bklst" name="search_issu" placeholder="Search by Name or Member id" class="input_search">
+                 <button type="submit" class="button_search">Search</button></td>
+        </form>
+    </tr>
+     <tr>
+        <th>s.no</th>
+        <th>Member Id</th>
+         <th>Member Name</th>
+        <th>Book Title</th>
+        <th>Issue Date</th>
+        <th>Check-in date</th>
+         <th>Status</th>
+        <th colspan="2">Option</th>
+    </tr>
+    {% for i in isslist%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+       <td>{{i.mem_id.member_id}}</td>
+        <td>{{i.mem_id.memname}}</td>
+        <td>{{i.book_id.booktitle}}</td>
+        <td>{{i.iss_date}}</td>
+        <td>{{i.ret_date}}</td>
+        {% if i.actual_date%}
+            <td style="color:green;">SUMBIT</td>
+        {% else %}
+            <td style="color:red;">NOT SUMBIT</td>
+        {% endif%}
+        <td><a href="http://127.0.0.1:8000/issu_dt/{{i.issu_id}}"><button class="basicbut2">Details</button></a></td>
+        {% if i.actual_date%}
+            <td> <a href="http://127.0.0.1:8000/issu_ret/{{i.issu_id}}"><button onclick="retbut()"  disabled>Returned book</button></a></td>
+        {%else%}
+        <td> <a href="http://127.0.0.1:8000/issu_ret/{{i.issu_id}}"><button class="basicbut3">Returned book</button></a></td>
+        {%endif%}
+    </tr>
+     {% endfor%}
+</table>
+{% else%}
+<h3 align=" center">No Issue record Found, new to Issue</h3>
+{% endif%}
+{% if messages %}
+  <div id="message_pop" class="messages">
+    {% for message in messages %}
+      <span class="{{ message.tags }}">{{ message }} <button onclick="cancel()" class="closebut" >X</button></span>
+      
+    {% endfor %}
+  </div>
+{% endif %}
+<script>
+    function retbut(){
+        windows.alert('Already this book Returned !!')
+    }
+</script>
+{% endblock%}

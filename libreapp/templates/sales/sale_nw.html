@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% block content%}
+{% load static%}
+<form method="POST">
+    {% csrf_token %}
+    <div class="sale_nw_div1" align="center">sales entry</div>
+    <table width="90%" cellpadding="10px" align="center" class="sale_nw_tab1">
+        <tr>
+            <th>Bill To:</th>
+             <th>
+                <input list="mem_lst" name="memdt" placeholder="Select or type member" required>
+                    <datalist id="mem_lst">
+                    {% for m in mem_lst %}
+                        <option value="{{ m.member_id }}">{{ m.memname }} - {{m.member_id}}</option>
+                    {% endfor %}
+                </datalist>
+                <a href="http://127.0.0.1:8000/mem_entry">New Member</a> 
+            </th>
+            <th align="right">Invoice date:</th>
+            <th><input type="date" name="dat" required> </th>
+        </tr>
+    </table>
+    <div class="sale_nw_div1">book details</div>
+    <table id="Moretab" width="90%" cellpadding="10px" align="center" class="sale_nw_tab2">
+        <tr>
+            <th colspan="2">ISBN</th>
+            <th>Book Title</th>
+            <th>Rate per Unit</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+        </tr>
+        <tr>
+        <td colspan="2">
+            <input list="sto_lst" type="text" name="isbn_dt[]" oninput="fillRate(this)" class="booktitle" required>
+                <datalist id="sto_lst">
+                    {% for i in sto_lst %}
+                    <option value="{{ i.isbn }}" data-isbn="{{ i.isbn }}" data-rate="{{ i.rate }}" data-book="{{i.booktitle}}">{{i.isbn}} - {{i.booktitle}}</option>
+                    {% endfor %}
+                </datalist>
+        </td>
+        <td><input type="text" name="book_dt[]" class="book" required> </td>
+        <td><input type="number" name="perunt[]" class="rate" oninput="calculateAmount(this)" required></td>
+        <td><input type="number" name="qunt[]" class="qty" oninput="calculateAmount(this)" required></td>
+        <td><input type="text" name="amount[]" class="amount" readonly></td>
+    </tr>
+
+    </table>
+    <h4 style="padding-left: 75%">TOTAL AMOUNT :  ₹<span id="total">0</span></h4>
+    <input type="hidden" name="total" id="to_mn">
+    <table width="90%" cellpadding="10px" align="center">
+         <tr>
+            <th colspan="5">
+                <input type="button" value="MORE" onclick="more()" class="basicbut2">
+                <input type="submit" value="SUMBIT" class="basicbut1">
+            </th>
+        </tr>        
+    </table>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+                <li class="{{ message.tags }}">{{message}}</li>
+            {% endfor %}
+    </ul>
+{% endif %}
+</form>
+<script src="{% static 'main.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="pur_lst_div">purchase details</div>
+<table cellpadding="8px" align="center" class="pur_lst_tb1">
+    <tr>
+        <th>s.no</th>
+        <th>Purchase ID</th>
+        <th>Supplier ID</th>
+        <th>Supplier Name</th>
+        <th>Date</th>
+        <th></th>
+    </tr>
+    {% for i in pur %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.purch_id}}</td>
+        <td>{{i.supp_id.supp_id}}</td>
+        <td>{{i.supp_id.sup_name}}</td>
+        <td>{{i.date}}</td>
+        <td><a href="http://127.0.0.1:8000/pur_dt/{{i.purch_id}}"><button class="basicbut2">view</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{%endblock%}

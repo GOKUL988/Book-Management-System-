@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+     td{
+        text-align:center;
+    }
+</style>
+<form method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <h3>ISSUE ENTRY FORM</h3>
+    </div>
+    <table cellpadding="10px" width="90%" align="center" class="issu_entry_tab1">
+        <tr>
+            <th colspan="2"><label for="">Book Title:</label></th>
+            <td>
+                <input list="BK_LST" name="book_id" placeholder="SELECT OR TYPE BOOK NAME OR ID" required>
+                <datalist id="BK_LST">
+                        {% for m in BK_LST%}
+                            <option value="{{m.acceno}}">{{m.booktitle}} - {{m.isbn}}</option>
+                        {% endfor%}
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><label for="">Member ID :</label></th>
+            <td>
+                <input list="MEM_LST" name="mem_id" placeholder="ENTER THE MEM ID">
+                <datalist id="MEM_LST">
+                    {% for n in MEM_LST%}
+                    <option value="{{n.member_id}}">{{n.memname}} - {{n.member_id}}</option>
+                    {% endfor%}
+                </datalist>
+                 <a href="http://127.0.0.1:8000/mem_entry">NEW MEMBER</a></td>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="2"><label for="">Issue Date</label></th>
+            <td><input type="date" name="iss_date"></td>
+        </tr>
+        <tr>
+            <th colspan=""></th>
+            <th colspan="1"><label for="">Check-in Date</label></th>
+            <td><input type="date" name="ret_date"></td>
+        </tr>
+    </table>
+    <table align="center" cellpadding="10px">
+        <tr>
+              <td colspan="3">
+                <a href="http://127.0.0.1:8000/issu_lt"><input type="button" value="BACK" class="but_back"></a>
+                <input value="SUMBIT" type="submit"  class="basicbut1">
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+{% endblock%}

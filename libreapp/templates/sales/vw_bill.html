@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>BILL {{a.invcno}}</title>
+    </head>
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'main.css' %}" >
+<body>
+    <div class="vw_bill_div1">sales bill</div>
+<table cellpadding="10px" align="center" class="vw_bill_tab1">
+    <tr>
+        <th class="th1">BILL TO : </th>
+        <td colspan="2" class="td1">{{b.memname}} - ({{b.member_id}})</td>
+        <th  class="th1">INVOICE NO :</th>
+        <td class="td1">{{a.invcno}}</td>
+    </tr>
+    <tr>
+        <th  class="th1"> DATE : </th>
+        <td class="td1">{{a.dat}}</td>
+         <th colspan="2" class="th1">MEMBER TYPE :</th>
+        <td class="td1">{{b.memtype}}</td>
+    </tr>
+    <tr>
+        <th class="th1">ADDRESS :</th>
+        <td colspan="5" class="td1">{{b.doorno}}, {{b.strnme}}, {{b.dist}}, {{b.state}} - {{b.pincode}}</td>
+     </tr>
+</table>
+<div class="vw_bill_div1">product list</div>
+<table cellpadding="10px" align="center" class="vw_bill_tab2">
+    <tr>
+        <th>S.NO</th>
+        <th>BOOK ISBN</th>
+        <th>BOOK TITLE</th>
+        <th>COST PER UNIT</th>
+        <th>QUANTITY</th>
+        <th>AMOUNT</th>
+    </tr>
+    {% for i in c%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.bkisbn_dt.isbn }}</td>
+        <td>{{i.bkisbn_dt.booktitle}}</td>
+        <td class="td2">{{i.perunt}}</td>
+        <td class="td2">{{i.qunt}}</td>
+        <td class="td2">{{i.amount}}</td>
+    </tr>
+    {% endfor%}
+    <tr>
+        <th colspan="5" align="right">TOTAL :</th>
+        <th>{{a.tot}}</th>
+    </tr>
+    </table>
+<table width="90%" cellpadding="10px" align="center">
+    <tr>
+        <th colspan="6">
+            <a href="http://127.0.0.1:8000/sale_list"><input type="button" value="BACK" id="back" class="but_back"> </a>
+            <input type="button" value="PRINT"  onclick="printInvoice()" id="remove" class="basicbut1">
+        </th>
+    </tr>
+</table>
+</body>
+<script src="{% static 'main.js' %}"></script>
+</html>
+
+

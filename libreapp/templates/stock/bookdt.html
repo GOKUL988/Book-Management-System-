@@ -1,0 +1,161 @@
+{% extends 'base.html'%}
+{% block content%}
+<style>
+    td{
+        text-align:center;
+    }
+    body{
+        overflow-x: hidden;
+    }
+
+</style>
+{% if messages %}
+  <div id="message_pop" class="messages">
+    {% for message in messages %}
+      <span class="{{ message.tags }}">{{ message }} <button onclick="cancel()" class="closebut" >X</button></span>
+      
+    {% endfor %}
+  </div>
+{% endif %}
+
+<table width="90%" style="padding-top: 10px;" align="center" class="ani_stobook">
+    <tr>
+        <th colspan="8" width="100%" style="border-top: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px ;"></th>
+    </tr> 
+    <tr>
+        <th colspan="2" class="tit2">BOOK DETAILS</th>
+    </tr>
+     <tr>
+        <th colspan="8" width="100%" style="border-bottom: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px;"></th>
+    </tr>
+</table>
+<table cellpadding="10px" width="90%"  align="center" class="ani_bookdt">
+    
+    <tr>
+        <th class="th_algin">ISBN No : </th>
+        <td class="td_algin">{{ a.isbn }}</td>
+    </tr>
+    <tr>
+        <th class="th_algin">Accession No : </th>
+        <td class="td_algin">{{ a.acceno }}</td>
+    </tr>
+    <tr>
+        <th class="th_algin">Title : </th>
+        <td class="td_algin">{{ a.booktitle }}</td>
+    </tr>
+    <tr>
+        <th class="th_algin">Author : </th>
+        <td class="td_algin">{{ a.authorname }}</td>
+    </tr>
+     <tr>
+        <th class="th_algin">Edition : </th>
+        <td class="td_algin">{{a.edition}}</td>
+    </tr>
+     <tr>
+        <th class="th_algin">Year of Publication : </th>
+        <td class="td_algin">{{ a.yearofpub }}</td>
+    </tr>
+    <tr>
+        <th class="th_algin">Category : </th>
+        <td class="td_algin">{{a.catego_ries }}</td>
+    </tr>
+     <tr>
+        <th class="th_algin">Classification : </th>
+        <td class="td_algin">{{ a.classfic }}</td>
+    </tr>
+     <tr>
+        <th class="th_algin">Availability: </th>
+        <td class="td_algin"> {{ a.ava }}</td>
+    </tr>
+     <tr>
+        <th class="th_algin">Rate : </th>
+        <td class="td_algin">{{ a.rate }}</td>
+    </tr>
+    <tr>
+        <th class="th_algin">Quantity : </th>
+        <td class="td_algin">{{ a.qun }}</td>
+    </tr>
+    <tr>
+        <th class="th_algin">Rack Details : </th>
+        <td class="td_algin">{{ a.rack }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a href=" http://127.0.0.1:8000/sto_edt/{{a.acceno}}"><input type="button" value="EDIT" class="basicbut1"></a>
+             <a href=" http://127.0.0.1:8000/sto_del/{{a.acceno}}"><input type="button" value="DELETE" class="basicbut3"></a>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <table width="90%" style="padding-top: 10px;" align="center" class="ani_bookdt2">
+        <tr>
+            <th colspan="8" width="100%" style="border-top: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px ;"></th>
+        </tr> 
+        <tr>
+            <th colspan="2" class="tit2">PURCHASE DETAILS</th>
+        </tr>
+        <tr>
+            <th colspan="8" width="100%" style="border-bottom: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px;"></th>
+        </tr>
+    </table>
+    <table width="90%" cellpadding="10px" align="center" class="ani_bookdt2" >
+        <tr>
+            <th class="border_single">PURCHASE ID</th>
+            <th class="border_single">SUPPLIER ID</th>
+            <th class="border_single">BILL NO</th>
+            <th class="border_single">DATE</th>
+        </tr>
+        <tr>
+            <td>{{b.purch_id}}</td>
+            <td>{{c.supp_id}}</td>
+            <td>{{b.billno}}</td>
+            <td>{{b.date}}</td>
+            <td><a href="http://127.0.0.1:8000/pur_dt/{{b.purch_id}}"><button class="basicbut2">VIEW</button></a></td>
+        </tr>
+    </table>
+</div>
+<div>
+  <table width="90%" style="padding-top: 10px;" align="center" class="ani_bookdt">
+        <tr>
+            <th colspan="8" width="100%" style="border-top: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px ;"></th>
+        </tr> 
+        <tr>
+            <th colspan="2" class="tit2">ISSUE DETAILS</th>
+        </tr>
+        <tr>
+            <th colspan="8" width="100%" style="border-bottom: 5px groove rgb(62, 139, 92); padding-top: 10px; border-radius: 25px;"></th>
+        </tr>
+    </table>
+        {% if d%}
+    <table width="90%" cellpadding="10px" align="center" class="ani_bookdt">
+            <tr>
+                <th class="border_single">MEMBER ID</th>
+                <th class="border_single">ISSUE DATE</th>
+                <th class="border_single">RETURN DATE</th>
+                <th class="border_single">STATUS</th>
+            </tr>
+            {% for issue in d %}
+            <tr>
+                <td><a href="http://127.0.0.1:8000/memdt/{{issue.mem_id}}"><button class="basicbut2">{{ issue.mem_id }}</button></a></td>
+                <td>{{ issue.iss_date }}</td>
+                <td>{{ issue.actual_date }}</td>
+                {% if issue.actual_date %}
+                    <td style="color: green;">SUBMIT</td>
+                {% else%}
+                    <td style="color: RED;"> NOT SUBMIT</td>
+                {% endif%}
+            </tr>
+            {% endfor %}
+    </table>
+        {%else%}
+    <h3 align="center">No Issue record found this book</h3>
+    {%endif%}
+    <div align="center">
+         <a href="http://127.0.0.1:8000/sto_book" ><button class="but_back" >BACK</button></a>
+    </div>
+  
+</div>
+
+
+{% endblock%}

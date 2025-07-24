@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{% block content %}
+<style>
+     td{
+        text-align:center;
+    }
+</style>
+<form method="post" class="sup_ent_ani">
+    {% csrf_token%}
+    <div class="sup_entry_tit">supplier entry </div>
+    <table cellpadding="10px" align="center" class="sup_entry_tab"> 
+        
+        <tr>
+            <th>Supplier Name : </th>
+            <td><input type="text" name="sup_name" required></td>
+        </tr>
+        <tr>
+            <th>Email : </th>
+            <td><input type="text" name="email" required></td>
+        </tr>
+        <tr>
+            <th>Mobile : </th>
+            <td><input type="text" name="mobile" required></td>
+        </tr>
+        <tr>
+            <th>Door No : </th>
+            <td><input type="text" name="doorno" required></td>
+        </tr>
+        <tr>
+            <th>Street : </th>
+            <td><input type="text" name="street" required></td>
+        </tr>
+        <tr>
+            <th>District : </th>
+            <td><input type="text" name="dist" required></td>
+        </tr>
+        <tr>
+            <th>State : </th>
+            <td><input type="text" name="stat" required></td>
+        </tr>
+        <tr>
+            <th>Pincode : </th>
+            <td><input type="text" name="pin" required></td>
+        </tr>
+        <tr>
+    </table>
+    <div class="sup_entry_but">
+        <a href="http://127.0.0.1:8000/sto_entry"><button type="button" class="but_back">Back</button></a>
+        <input type="submit" value="Submit" class="basicbut1">
+    </div>
+
+</form>
+{% endblock %}

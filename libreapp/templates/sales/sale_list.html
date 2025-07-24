@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<table width="90%" align="center" class="sale_lst_tab1">
+    <tr>
+        <th colspan="3"><h3>SALES DETAILS</h3></th>
+        <th align="right"><a href="http://127.0.0.1:8000/sale_nw"><input type="button" value="New Sale" class="basicbut1"></a> </th>
+    </tr>
+</table>
+<table cellpadding="10px" width="90%" align="center"  class="sale_lst_tab2">
+    <tr>
+        <th>Invoice No</th>
+        <th>Member ID</th>
+        <th>Invoice Date</th>
+        <th> View Bill</th>
+    </tr>
+    {% for i in inv_id%}
+    <tr>
+    <td>{{i.invcno}}</td>
+    <td>{{i.mem_dt}}</td>
+    <td>{{i.dat}}</td>
+    <td>
+        <a href="http://127.0.0.1:8000/vw_bill/{{i.invcno}}"><input type="button" value="BILL" class="basicbut2"></a> 
+        <a href="http://127.0.0.1:8000/sale_edt/{{i.invcno}}"><input type="button" value="EDIT" class="basicbut1"></a>
+        <a href="http://127.0.0.1:8000/sale_del/{{i.invcno}}"><input type="button" value="DELETE" class="basicbut3"></a>
+    </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}

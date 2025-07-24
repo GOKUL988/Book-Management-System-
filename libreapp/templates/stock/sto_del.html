@@ -1,0 +1,21 @@
+{% extends 'base.html'%} 
+{% block content %} 
+<form method="POST">
+    {% csrf_token %}
+    <table align="center" cellpadding="10px" class="sto_del">
+        <tr>
+            <th>DO YOU WANT TO DELETE THIS ??</th>
+        </tr>
+        <tr>
+            <td>{{a.booktitle}} - {{a.isbn}} - {{a.authorname}}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center">
+                <a href="http://127.0.0.1:8000/bookdt/{{a.acceno}}"><input type="button" value="CANCEL" class="but_back"></a> 
+                <input type="submit" value="DELETE" class="basicbut3">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock%}

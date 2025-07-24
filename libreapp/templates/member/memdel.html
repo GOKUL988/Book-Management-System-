@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <table align="center" width="30%" cellpadding="10px" class="mem_del_tab1">
+        <tr>
+            <th colspan="2">Do you Want to delete this Member ?</th>
+        </tr>
+        {% if a or b or c %}
+        <tr>
+            <th>Member name</th>
+        </tr>
+        <tr><td>{{a.memname}}</td></tr>
+        <tr><th></th></tr>
+        <tr>
+            <th>Issue Details</th>
+        </tr>
+        {% if b %}
+        {% for i in b%}
+        <tr>    
+            <td>{{i.book_id.booktitle}} - {{i.book_id.isbn}}</td>
+        </tr>
+        <tr>
+         {% endfor%}
+            {% else %}
+            <td>NOTHING</td>
+            {%endif%}
+         </tr>   
+        {% else%}
+        <tr>
+            <th>No Infomation about this user</th>
+        </tr>
+        {% endif%}
+        <tr>
+            <td colspan="2" align="center">
+                <a href="http://127.0.0.1:8000/memdt/{{a.member_id}}"><input type="button" value="BACK" class="but_back"></a>
+                <input type="submit" value="Delete" class="basicbut3">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

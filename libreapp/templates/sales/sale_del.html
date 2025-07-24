@@ -1,0 +1,27 @@
+{% extends 'base.html'%} 
+{% block content %}  
+<form method="POST">
+    {% csrf_token %}
+    <table width="30%" cellpadding="10px" align="center" class="sale_del_tab1">
+        <tr>
+            <th colspan="2">DO YOU WANT TO DELETE THIS ??</th> 
+        </tr>
+        <tr>
+            <td colspan="2"> member id: {{sales_obj.mem_dt}} - INVOICE NO: {{sales_obj.invcno}}</td>
+        </tr>
+        {% for i in saledt_obj%}
+        <tr>
+            <td>{{i.bkisbn_dt}}</td>
+            <td>{{i.bktit_dt}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th colspan="2">
+                <a href="http://127.0.0.1:8000/sale_list"><input type="button" value="BACK" class="but_back"></a>
+                <input type="submit" value="SUMBIT" class="basicbut1"> 
+            </th>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

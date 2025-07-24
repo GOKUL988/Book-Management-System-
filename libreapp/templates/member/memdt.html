@@ -1,0 +1,69 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+<div class="memdt_div">member details</div>
+<table width="90%" cellpadding="15px" align="center" class="memdt_tab1">
+  <tr>
+    <th>Member Id :</th>
+    <td>{{mem.member_id}}</td>
+  </tr>
+  <tr>
+    <th>Member Name :</th>
+    <td>{{mem.memname}}</td>
+  </tr>
+  <tr>
+    <th>Date of Birth :</th>
+    <td>{{mem.dob}}</td>
+  </tr>
+  <tr>
+    <th>Gender :</th>
+    <td>{{mem.gender}}</td>
+  </tr>
+  <tr>
+    <th>Member Type :</th>
+    <td>{{mem.memtype}}</td>
+  </tr>
+  <tr>
+    <th>Address :</th>
+    <td>{{mem.doorno}} - {{mem.strnme}} - {{mem.dist}} - {{mem.state}}</td>
+  </tr>
+  <tr>
+    <th>Pincode :</th>
+    <td>{{mem.pincode}}</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align: center;">
+      <a href="http://127.0.0.1:8000/mem_edt/{{mem.member_id}}"><input type="button" value="Edit" class="basicbut1"> </a>
+      <a href="http://127.0.0.1:8000/memdel/{{mem.member_id}}"><input type="button" value="Delete" class="basicbut3"></a>
+    </td>
+  </tr>
+</table>
+<table cellpadding="10px" align="center" class="memdt_tab2">
+  {% if sto_iss %}
+  <tr>
+    <th colspan="3">Book Are Access by {{mem.memname}}</th>
+  </tr>
+  <tr>
+    <th>Book Title</th>
+    <th>Book ISBN</th>
+    <th>In Hand</th>
+  </tr>
+  {% for i in sto_iss %}
+  <tr>
+    <td><a href="http://127.0.0.1:8000/bookdt/{{i.book_id.acceno}}"><button class="basicbut2">{{i.book_id.booktitle}}</button></a></td>
+    <td>{{i.book_id.isbn}}</td>
+    {% if i.actual_date%}
+    <td>No</td>
+    {%else%}
+    <td>Yes</td>
+    {% endif%}
+    {% endfor %}
+    {% endif %}
+  </tr>
+</table>
+<table width="90%" cellpadding="10px" align="center">
+    <tr>
+        <th><a href="http://127.0.0.1:8000/mem_list"><button class="but_back">Back</button></a></th>
+    </tr>
+</table>
+{%endblock%}
